@@ -41,7 +41,7 @@ public class RequestDataController {
   // http://localhost:4000/request-data/path-variable/10
   public String deletePathVariable(
       @PathVariable("age") Integer age,
-      @PathVariable(name="name", required=false) String name) {
+      @PathVariable(name = "name", required=false) String name) {
     return "사용자 나이:" + age + " / 사용자 이름:" + name;
   }
 
