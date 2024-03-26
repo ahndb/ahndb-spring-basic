@@ -23,9 +23,13 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+implementation 'org.springframework.boot:spring-boot-starter-web'
   // 객체 유효성 검사를 위해 사용하는 spring boot 유효성 검사 의존성
   implementation 'org.springframework.boot:spring-boot-starter-validation'
+  // RDBMS와 Java의 객체간 매핑을 위한 ORM 기술인 JPA 의존성 
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  // MySQL 연결을 위한 connector 의존성
+  runtimeOnly 'com.mysql:mysql-connector-j:8.0.33'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
