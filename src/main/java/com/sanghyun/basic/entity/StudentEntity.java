@@ -36,7 +36,7 @@ public class StudentEntity {
 
   // @Id :
   // - Entity의 필드 중 Primary key로 사용되는 필드를 지정
-  // - 데이터베이스에서 받아올 수 없어 추후 코드로 사용하려면 지정되어야 함
+  // - 데이터베이스에서 pk로 지정되어있는지 알수가 없어 추후 코드로 사용하려면 지정되어야 함
   @Id
   // @GeneratedValue :
   // - Primary key의 자동 생성 전략을 지정
@@ -87,4 +87,3 @@ public class StudentEntity {
     this.graduation = dto.getGraduation();
   }
 }
-
