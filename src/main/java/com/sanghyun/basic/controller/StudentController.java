@@ -10,32 +10,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanghyun.basic.dto.request.student.PostStudentRequestDto;
+import com.sanghyun.basic.service.StudentService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/student")
+@RequiredArgsConstructor
 public class StudentController {
-  
+
+  private final StudentService studentService;
+
   // CREATE
   @PostMapping("/")
   public ResponseEntity<String> postStudent(
-    @RequestBody @Valid PostStudentRequestDto requestBody
-  ) {
-    return null;
+      @RequestBody @Valid PostStudentRequestDto requestBody) {
+    ResponseEntity<String> response = studentService.postStudent(requestBody);
+    return response;
   }
 
   // UPDATE
   @PatchMapping("/")
-  public ResponseEntity <?> patchStudent() {
+  public ResponseEntity<?> patchStudent() {
     return null;
   }
 
   // DELETE
   @DeleteMapping("/{studentNumber}")
   public ResponseEntity<?> deleteStudent(
-    @PathVariable("studentNumber") Integer studentNumber
-  ) {
+      @PathVariable("studentNumber") Integer studentNumber) {
     return null;
   }
 

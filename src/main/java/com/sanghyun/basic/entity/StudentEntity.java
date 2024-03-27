@@ -1,5 +1,7 @@
 package com.sanghyun.basic.entity;
 
+import com.sanghyun.basic.dto.request.student.PostStudentRequestDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -62,20 +64,26 @@ public class StudentEntity {
   // @NoArgsConstructor
   // public StudentEntity() {
   // }
-  
 
   // @AllArgsConstructor
   // public StudentEntity(
-  //     Integer studentNumber,
-  //     String name,
-  //     Integer age,
-  //     String address,
-  //     Boolean graduation) {
-  //   this.studentNumber = studentNumber;
+  // Integer studentNumber,
+  // String name,
+  // Integer age,
+  // String address,
+  // Boolean graduation) {
+  // this.studentNumber = studentNumber;
 
-  //   this.name = name;
-  //   this.age = age;
-  //   this.address = address;
-  //   this.graduation = graduation;
+  // this.name = name;
+  // this.age = age;
+  // this.address = address;
+  // this.graduation = graduation;
   // }
+
+  public StudentEntity(PostStudentRequestDto dto) {
+    this.name = dto.getName();
+    this.age = dto.getAge();
+    this.address = dto.getAddress();
+    this.graduation = dto.getGraduation();
+  }
 }
