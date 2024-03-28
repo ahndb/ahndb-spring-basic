@@ -14,3 +14,10 @@
 //*   ->  validation을 사용해서 유효성 검사 시에 유효하지 않으면 spring boot가 자동으로 response body를 생성해서 응답
 //?         --> ExceptionHandler 클래스로 validation 관련 예외 직접 처리(@RestControllerAdvice, @ExceptionHandler)
 //*   ->  각 HTTP 응답을 직접 제어하기 위해 ResponseEntity 클래스를 사용 (status code, body, header, ... 제어)
+
+//^ Repository , Entity 는 table 명으로 한다
+//^ 나머지는 명칭이 주는 의미보다 모듈에 대한 의미로 봐야함
+
+//! 컨트롤 - 서비스 - 레포지토리 - 데이터베이스
+
+// post, patch, put 
