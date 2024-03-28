@@ -20,4 +20,5 @@
 
 //! 컨트롤 - 서비스 - 레포지토리 - 데이터베이스
 
-// post, patch, put 
+// post, patch, put은 Request body가 가능하다.
+// get, delete는 Request body가 불가능하다.

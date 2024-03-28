@@ -41,9 +41,10 @@ public class StudentController {
 
   // DELETE
   @DeleteMapping("/{studentNumber}")
-  public ResponseEntity<?> deleteStudent(
+  public ResponseEntity<String> deleteStudent(
       @PathVariable("studentNumber") Integer studentNumber) {
-    return null;
+    ResponseEntity<String> response = studentService.deleteStudent(studentNumber);
+    return response;
   }
 
 }
