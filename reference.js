@@ -22,3 +22,10 @@
 
 // post, patch, put은 Request body가 가능하다.
 // get, delete는 Request body가 불가능하다.
+
+// CRUD 평균적 사용 빈도
+// CREATE : 1 ~ 2번 
+// READ : 엄청 많음
+// UPDATE : 1 ~ 컬럼 개수 
+// DELETE : 1 ~ 2번
+

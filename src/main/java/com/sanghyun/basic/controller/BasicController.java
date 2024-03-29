@@ -1,6 +1,5 @@
 package com.sanghyun.basic.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sanghyun.basic.service.BasicService;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +43,9 @@ public class BasicController {
   // ^ - 생성자를 통한 의존성 주입을 spring에서 권장 (의존성이 주입되지 않은 경우가 존재할 수 없기 때문)
   // ^ - spring framework에서 의존성 주입은 제어의 역전 (IoC)를 통해서 spring framework가 진행
 
-  // * 상위 모듈 - > 하위 모듈 (상위 모듈이 하위에 영향받음(의존) )
+  // 클라이언트에 가까울수록 상위
+
+  // * 상위 모듈 - > 하위 모듈 (상위 모듈이 하위에 영향받음(의존))
   // * 상위, 하위 둘다 추상화에 의존해야 한다 (의존성 역전 ? )
   // * 인터페이스를 만드는게 (의존성 역전)
   // * 직접(의존 같은 내부 클래스에서 작성안하는게 좋음)에서 간접(의존성 역전)으로 바꾸는게 좋음

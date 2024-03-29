@@ -18,7 +18,7 @@ public class PostStudentRequestDto {
   @NotNull
   @Min(0)
   private Integer age;
-  
+
   @NotBlank
   private String address;
 

@@ -67,9 +67,21 @@ public class StudentServiceImplement implements StudentService {
   @Override
   public ResponseEntity<String> deleteStudent(Integer studentNumber) {
 
+    // DELETE (SQ : DELETE)
     studentRepository.deleteById(studentNumber);
 
     return ResponseEntity.status(HttpStatus.OK).body("성공");
   }
 
 }
+
+// findBy
+// findByName
+// findByAge
+// findByAddress
+
+// And
+// findByNameAndAge
+
+// 비교
+// findByNameAndAgeGreaterThan
