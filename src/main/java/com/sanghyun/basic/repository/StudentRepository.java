@@ -9,7 +9,7 @@ import com.sanghyun.basic.entity.StudentEntity;
 import java.util.List;
 
 // Repository 레이어 :
-// - 데이터베스와 관련된 작업들을 처리하는 영역
+// - 데이터베이스와 관련된 작업들을 처리하는 영역
 // - Service가 비즈니스 로직 수행 중 데이터베이스 작업이 필요할 때, Repository를 거쳐서 데이터베이스 작업을 수행
 
 // @Repository : 해당 클래스를 Spring Bean으로 등록하는 어노테이션, @Component와 동일
@@ -68,7 +68,7 @@ extends JpaRepository<StudentEntity, Integer> {
   // JPQL (Java Persistence Query Language) : 
   // - 표준 SQL과 매우 흡사하지만 Entity명과 Entity 속성으로 쿼리를 작성하는 방법
   @Query(value = 
-    "SELECT s FROM student s WHERE s.studentNumber = ?! AND s.age > ?2",
+    "SELECT s FROM student s WHERE s.studentNumber = ?1 AND s.age > ?2",
     nativeQuery = false
   ) // s 를 적으면 전체를 객체로 가져옴
   List<StudentEntity> getStudent2(Integer studentNumber, Integer age);

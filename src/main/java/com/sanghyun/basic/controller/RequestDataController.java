@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 public class RequestDataController {
 
   // @RequestParam() :
-  // - GET, DELETE 처럼 URL로 데이터를 전송하는 메서드에서 Query Sting 으로 지정된 데이터를 가져오기 위헤 사용
+  // - GET, DELETE 처럼 URL로 데이터를 전송하는 메서드에서 Query String 으로 지정된 데이터를 가져오기 위헤 사용
 
   // HTTP GET localhost:4000/request-data/request-param
   @GetMapping("/request-param")
