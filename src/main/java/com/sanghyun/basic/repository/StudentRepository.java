@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.sanghyun.basic.entity.StudentEntity;
+import java.util.List;
 
 // Repository 레이어 :
 // - 데이터베스와 관련된 작업들을 처리하는 영역
@@ -23,4 +24,31 @@ public interface StudentRepository
 // - 매개타입 ID : 해당 Repository에서 사용하는 Entity의 Primary key 데이터 타입을 지정하는 매개타입 
 extends JpaRepository<StudentEntity, Integer> {
   
+  // SQL :  
+  // SELECT * FROM student 
+  // WHERE address = '서울특별시'
+  List<StudentEntity> findByAddress(String address);
+
+  // SQL :
+  // SELETE * FROM student
+  // WHERE graduation IS true
+  // ORDER BY age DESC
+  List<StudentEntity> findByGraduationOrderByAgeDesc(Boolean graduation);
+
+  // SQL :
+  // SELECT * FROM student
+  // WHERE student_number = 5
+  // AND age > 20;
+  StudentEntity findByStudentNumberAndAgeGreaterThan(Integer studentNumber, Integer age);
+
+  // SQL :
+  // SELECT count(*) FROM student
+  // WHERE graduation IS false
+  int countByGraduation(Boolean graduation);
+
+  // address가 '서울특별시' 이면서 graduation이  true인 레코드가 존재하는가?
+  boolean existsByAddressAndGraduation(String address, Boolean graduation);
+
+  // GroupBy, Join 작업은 불가능
+  // Subqurey 작업 불가능
 }
