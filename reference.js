@@ -22,11 +22,20 @@
 //? 레포지토리 - (데이터베이스와 관련된 작업을 처리하는 영역, 나중에 서비스에서 해당부분을 호출해서 작업하고 컨트롤로 넘겨진다.)
 
 // post, patch, put은 Request body가 가능하다.
-// get, delete는 Request body가 불가능하다.
+// get, delete는 Request body가 불가능하다. @PathVariable 사용
 
 // CRUD 평균적 사용 빈도
 // CREATE : 1 ~ 2번 
 // READ : 엄청 많음
 // UPDATE : 1 ~ 컬럼 개수 
 // DELETE : 1 ~ 2번
+
+// 컨트롤러 안에 dto폴더를 넣기도 함
+// 리포지토리 안에 엔터티폴더를 넣기도 함
+
+//POST /api/v1/auth/sign-in
+//         버전/ 모듈/ 엔드포인트
+
+// request 입력
+// response 출력
 
