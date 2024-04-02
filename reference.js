@@ -39,3 +39,16 @@
 // request 입력
 // response 출력
 
+
+
+Client- controller -    	                - servise(비즈니스 로직 수행중 데이터 베이스 작업이 필요한때 repository를 거쳐 데이터베이스 작업 수행) - repository -  	- database
+         ==========dto(request, response)==================================					     ====== entity=======
+
+
+
+
+
+
+
+repository 
+	 (extends JpaRepository<T,ID>) | CRUD(@Query(value= 쿼리문))
