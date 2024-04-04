@@ -52,3 +52,6 @@
 
 // repository 
 // 	 (extends JpaRepository<T,ID>) | CRUD(@Query(value= 쿼리문))
+
+// 개별responseDto를 만드는 이유 - 가져와야하는 값이 더 있을 경우 만듬 (확장해서 쓰기 위해)
+// 기본적으로 responseDto에 적어두고 serviseImplementation으로 가져와서 사용
