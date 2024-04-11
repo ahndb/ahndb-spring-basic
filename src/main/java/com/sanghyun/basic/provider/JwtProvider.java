@@ -22,28 +22,29 @@ import io.jsonwebtoken.security.Keys;
 //?  - 서명 : 헤더와 페이로드를 합쳐서 인코딩하고 지정한 비밀키로 암호화한 데이터
 @Component
 public class JwtProvider {
-  
+
   // JWT 생성
   public String create(String principle) {
-    // 만료시간 
+    // 만료시간
     Date expiredDate = Date.from(Instant.now().plus(4, ChronoUnit.HOURS));
     // 비밀키 생성
+    // 이렇게 명시하면 안됨, 환경변수로 등록하거나, 서버에 보관해서 쓰거나 등 다른데 저장해서 사용해야 함
     Key key = Keys.hmacShaKeyFor("qwerasdfzxcvqwerasdfzxcvqwerasdfzxcvqwerasdfzxcv".getBytes(StandardCharsets.UTF_8));
 
     // JWT 생성
     String jwt = Jwts.builder() // 생성을 위한 빌더 작업
-    // 빌더 후 서명 작업을 해야함
-    // 서명(서명에 사용할 비밀키, 서명에 사용할 암호화 알고리즘)
-      .signWith(key, SignatureAlgorithm.HS256)
-      // 페이로드 내용
-      // "sub(작성자)"값
-      .setSubject(principle)
-      // 생성시간
-      .setIssuedAt(new Date())
-      // 만료시간
-      .setExpiration(expiredDate)
-      // 위 내용을 압축 (인코딩 함)        
-      .compact();
+        // 빌더 후 서명 작업을 해야함
+        // 서명(서명에 사용할 비밀키, 서명에 사용할 암호화 알고리즘)
+        .signWith(key, SignatureAlgorithm.HS256)
+        // 페이로드 내용
+        // "sub(작성자)"값
+        .setSubject(principle)
+        // 생성시간
+        .setIssuedAt(new Date())
+        // 만료시간
+        .setExpiration(expiredDate)
+        // 위 내용을 압축 (인코딩 함)
+        .compact();
 
     return jwt;
 
