@@ -25,6 +25,15 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtProvider {
 
+  //? JWT 암호화에 사용되는 비밀키는 보안 관리가 되어야 함
+  //? 코드에 직접적으로 비밀키를 작성하는 것은 보안상 좋지 않음
+  
+  //! 해결책
+  // 1. application.properties / application.yaml에 등록
+  //  - application.properties 혹은 application.yaml에 비밀키를 작성
+  //  - @Value()를 이용하여 데이터를 가져옴
+  //  import org.springframework.beans.factory.annotation.Value;
+  //  - 주의사항 : application.properties / application.yaml을 .gitignore에 등록해야함
   @Value("${jwt.secret-key}")
   private String secretKey;
 
