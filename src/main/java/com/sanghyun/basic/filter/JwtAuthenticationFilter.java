@@ -49,6 +49,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
           }
+
+          // 접근 주체에 대한 권한 지정
+
           
           // 3. principle의 대한 정보를 controller로 전달하기 위해 context에 담기
           
