@@ -60,6 +60,7 @@ public class StudentEntity {
   private Integer age;
   private String address;
   private Boolean graduation;
+  private String password;
 
   // @NoArgsConstructor
   // public StudentEntity() {
@@ -85,5 +86,6 @@ public class StudentEntity {
     this.age = dto.getAge();
     this.address = dto.getAddress();
     this.graduation = dto.getGraduation();
+    this.password = dto.getPassword();
   }
 }

@@ -89,17 +89,19 @@ public class WebSecurityConfig {
         // 3. 인증된 사용자는 모두 접근을 허용
         .authorizeHttpRequests(request -> request
             // 특정 URL 패턴에 대한 요청은 인증되지 않은 사용자도 접근을 허용
-            .requestMatchers(HttpMethod.GET, "/auth/*").permitAll() // 1.
+            .requestMatchers(HttpMethod.GET, "/auth/**").permitAll() // 1.
             // 특정 URL 패턴에 대한 요청은 지정한 권한을 가지고 있는 사용자만 접근을 허용
-            .requestMatchers("/student", "/student/**").hasRole("STUDENT") // 2.
+            // .requestMatchers("/student", "/student/**").hasRole("STUDENT") // 2.
+            .requestMatchers("/student", "/student/**").permitAll()
             // 인증된 사용자는 모두 접근을 허용함
             .anyRequest().authenticated() // 3.
         )
-        //# 인증 과정 중에 발생한 예외 처리
+        // # 인증 과정 중에 발생한 예외 처리
         .exceptionHandling(exceptionHandling -> exceptionHandling
-          .authenticationEntryPoint(new FailedAuthenticationEntryPoint()));
+            .authenticationEntryPoint(new FailedAuthenticationEntryPoint()));
 
-    // # 우리가 생성한 jwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 이전에 등록
+    // # 우리가 생성한 jwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 이전에
+    // 등록
     security.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     return security.build();
@@ -126,9 +128,9 @@ public class WebSecurityConfig {
 class FailedAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
   @Override
-  public void commence(HttpServletRequest request, HttpServletResponse response, 
-    AuthenticationException authException) throws IOException, ServletException {
-    
+  public void commence(HttpServletRequest request, HttpServletResponse response,
+      AuthenticationException authException) throws IOException, ServletException {
+
     authException.printStackTrace();
 
     response.setContentType("application/json;charset=UTF-8");
@@ -137,4 +139,4 @@ class FailedAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
   }
 
-} 
+}

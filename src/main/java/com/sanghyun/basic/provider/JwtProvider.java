@@ -25,26 +25,26 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtProvider {
 
-  //? JWT 암호화에 사용되는 비밀키는 보안 관리가 되어야 함
-  //? 코드에 직접적으로 비밀키를 작성하는 것은 보안상 좋지 않음
-  
-  //! 해결책
-  //# 1. application.properties / application.yaml에 등록
-  //  - application.properties 혹은 application.yaml에 비밀키를 작성
-  //  - @Value()를 이용하여 데이터를 가져옴
-  //  import org.springframework.beans.factory.annotation.Value;
-  //  - 주의사항 : application.properties / application.yaml을 .gitignore에 등록해야함
+  // ? JWT 암호화에 사용되는 비밀키는 보안 관리가 되어야 함
+  // ? 코드에 직접적으로 비밀키를 작성하는 것은 보안상 좋지 않음
+
+  // ! 해결책
+  // # 1. application.properties / application.yaml에 등록
+  // - application.properties 혹은 application.yaml에 비밀키를 작성
+  // - @Value()를 이용하여 데이터를 가져옴
+  // import org.springframework.beans.factory.annotation.Value;
+  // - 주의사항 : application.properties / application.yaml을 .gitignore에 등록해야함
   @Value("${jwt.secret-key}")
   private String secretKey;
-  
-    //# 2. 시스템의 환경변수로 등록하여 사용 (1번보다 보안상 더 높은 형태임)
-    //  - OS 자체의 시스템 환경 변수에 비밀키(변수와 값)를 작성
-    //  - Spring에서 Environment 객체를 이용하여 값을 가져옴
 
-    //# 3. 외부 데이터 관리 도구(솔루션)를 사용
-    //  - 해당 서버가 아닌 타 서버에 등록된 Vault 도구를 사용하여 비밀키를 관리
-    //  - OS 부팅시에 Vault 서버에 접근하여 비밀키를 가져와서 사용하는 방법
-    //  - 매 부팅시 다른 비밀키를 제공해줌
+  // # 2. 시스템의 환경변수로 등록하여 사용 (1번보다 보안상 더 높은 형태임)
+  // - OS 자체의 시스템 환경 변수에 비밀키(변수와 값)를 작성
+  // - Spring에서 Environment 객체를 이용하여 값을 가져옴
+
+  // # 3. 외부 데이터 관리 도구(솔루션)를 사용
+  // - 해당 서버가 아닌 타 서버에 등록된 Vault 도구를 사용하여 비밀키를 관리
+  // - OS 부팅시에 Vault 서버에 접근하여 비밀키를 가져와서 사용하는 방법
+  // - 매 부팅시 다른 비밀키를 제공해줌
 
   // JWT 생성
   public String create(String principle) {
@@ -60,7 +60,7 @@ public class JwtProvider {
         // 서명(서명에 사용할 비밀키, 서명에 사용할 암호화 알고리즘)
         .signWith(key, SignatureAlgorithm.HS256)
         // 페이로드 내용 (물건담기)
-        // "sub(작성자)"값 
+        // "sub(작성자)"값
         .setSubject(principle)
         // 생성시간
         .setIssuedAt(new Date())
@@ -81,14 +81,14 @@ public class JwtProvider {
     // 비밀키 생성 (사용했던 키 가져오기)
     Key key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
 
-    //(열기 시도)
+    // (열기 시도)
     try {
       // 비밀키로 jwt 복호화 작업
       claims = Jwts.parserBuilder()
-        .setSigningKey(key)
-        .build()
-        .parseClaimsJws(jwt)
-        .getBody();
+          .setSigningKey(key)
+          .build()
+          .parseClaimsJws(jwt)
+          .getBody();
     } catch (Exception exception) {
       exception.printStackTrace();
       return null;
