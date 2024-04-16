@@ -2,7 +2,7 @@ package com.sanghyun.basic.filter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -63,31 +63,31 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             roles.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
           } 
           
-          // 3. principle의 대한 정보를 controller로 전달하기 위해 context에 담기
+          //# 3. principle의 대한 정보를 controller로 전달하기 위해 context에 담기
           
-          // 3-1. 인증된 사용자라는 의미의 AbstractAuthenticationToken 객체를 생성
-          // (사용자의 이름, 비밀번호, 사용자권한)을 매개변수로 넣어준다.
+          //# 3-1. 인증된 사용자라는 의미의 AbstractAuthenticationToken 객체를 생성
+          //# (사용자의 이름, 비밀번호, 사용자권한)을 매개변수로 넣어준다.
           AbstractAuthenticationToken  authenticationToken = new UsernamePasswordAuthenticationToken(subject, null, roles);
 
-          // 3-2. 인증 요청에 대한 세부정보를 등록 / 웹 인증 정보를 해당 리퀘스트에 등록
+          //# 3-2. 인증 요청에 대한 세부정보를 등록 / 웹 인증 정보를 해당 리퀘스트에 등록
           authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-          // 3-3. 빈 security context 생성
+          //# 3-3. 빈 security context 생성
           SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
 
-          // 3-4. 생성한 빈 security context에 생성한 인증 토큰을 설정
+          //# 3-4. 생성한 빈 security context에 생성한 인증 토큰을 설정
           securityContext.setAuthentication(authenticationToken);
 
-          // 3-5. 생성한 security context를 사용할 수 있도록 등록
+          //# 3-5. 생성한 security context를 사용할 수 있도록 등록
           SecurityContextHolder.setContext(securityContext);
 
         } catch (Exception exception) {
           exception.printStackTrace();
         }
     
-        // 4. 다음 필터에 request 객체와 response 객체를 전달
-
+        //# 4. 다음 필터에 request 객체와 response 객체를 전달
         filterChain.doFilter(request, response);
+        
   }
 
   // 1. request 객체에서 header를 가져옴
