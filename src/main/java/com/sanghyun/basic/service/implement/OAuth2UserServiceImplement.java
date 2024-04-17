@@ -26,3 +26,4 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService {
     return new CustomOAuthUser(name, oAuth2User.getAttributes(), oAuth2User.getAuthorities());
   }
 }
+
