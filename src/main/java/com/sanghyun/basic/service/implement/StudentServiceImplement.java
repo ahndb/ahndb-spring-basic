@@ -23,10 +23,10 @@ public class StudentServiceImplement implements StudentService {
 
   // 의존성을 외부에서 해주는게 가장 좋은데 읽기전용으로 되어있어 내부에서 써야함
   // PasswordEncoder 인터페이스 :
-  // - Spring Security에서 제공해주는 비밀번호를 안전하게 관리하고 검증하도록 도움을 주는 인터페이스
-  // - String 타입을 반환해주는 encode(평문의 패스워드) : 평문 패스워드를 암호화해서 반환
-  // - Boolean 타입을 반환해주는 matches(평문패스워드를 첫번째 매개변수, 두번째 매개변수에 암호화된 패스워드) : 평문 패스워드와
-  // 암호화된 패스워드가 같은지 비교 결과를 반환
+  //* - Spring Security에서 제공해주는 비밀번호를 안전하게 관리하고 검증하도록 도움을 주는 인터페이스
+  //* - String 타입을 반환해주는 encode(평문의 패스워드) : 평문 패스워드를 암호화해서 반환
+  //* - Boolean 타입을 반환해주는 matches(평문패스워드를 첫번째 매개변수, 두번째 매개변수에 암호화된 패스워드) : 평문 패스워드와
+  //* 암호화된 패스워드가 같은지 비교 결과를 반환
   private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
   @Override
@@ -52,13 +52,13 @@ public class StudentServiceImplement implements StudentService {
     return ResponseEntity.status(HttpStatus.CREATED).body("성공!");
   }
 
-  // ^ 데이터베이스(RDBMS)의 Table 은 프로그래밍 언어에 class와 매핑됨
+  //* 데이터베이스(RDBMS)의 Table 은 프로그래밍 언어에 class와 매핑됨
   // 객체지향픞로그래밍 언어에서 인스턴스 작업하면 테이블에 레코드(row)가 생김
 
   // 테이블로 접근 (UPDATE)
   // 전달받은 조건에 맞는 레코드를 검색 (WHERE)
   // 검색된 레코드의 원하는 값으로 변경 (SET)
-  //////////////////////////////////////////////////
+  
   @Override
   public ResponseEntity<String> patchStudent(PatchStudentRequestDto dto) {
     Integer studentNumber = dto.getStudentNumber();
