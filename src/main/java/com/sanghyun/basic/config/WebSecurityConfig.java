@@ -20,6 +20,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.sanghyun.basic.filter.JwtAuthenticationFilter;
+import com.sanghyun.basic.service.implement.OAuth2UserServiceImplement;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,6 +39,7 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
 
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
+  private final OAuth2UserServiceImplement oAuth2UserService;
 
   // ? @Bean :
   // - Spring bean으로 등록하는 어노테이션
@@ -88,6 +90,7 @@ public class WebSecurityConfig {
         // 2. 인증된 사용자 중 특정 권한을 가지고 있는 사용자만 접근을 허용
         // 3. 인증된 사용자는 모두 접근을 허용
         .authorizeHttpRequests(request -> request
+            .requestMatchers("/oauth2/**").permitAll() // 모두 허용
             // 특정 URL 패턴에 대한 요청은 인증되지 않은 사용자도 접근을 허용
             .requestMatchers(HttpMethod.GET, "/auth/**").permitAll() // 1.
             // 특정 URL 패턴에 대한 요청은 지정한 권한을 가지고 있는 사용자만 접근을 허용
@@ -96,9 +99,16 @@ public class WebSecurityConfig {
             // 인증된 사용자는 모두 접근을 허용함
             .anyRequest().authenticated() // 3.
         )
+        .oauth2Login(oauth2 -> oauth2
+          // OAuth 인증 서버에서 redirection 하는 URL 지정
+          .redirectionEndpoint(endpoint -> endpoint.baseUri("/oauth2/callback/*"))
+          // OAuth  인증 서버에서 인증 절차가 끝난 후, 사용자에 대한 정보를 처리하는 객체를 지정
+          .userInfoEndpoint(endpoint -> endpoint.userService(oAuth2UserService))
+        )
         // # 인증 과정 중에 발생한 예외 처리
         .exceptionHandling(exceptionHandling -> exceptionHandling
-            .authenticationEntryPoint(new FailedAuthenticationEntryPoint()));
+            .authenticationEntryPoint(new FailedAuthenticationEntryPoint())
+        );
 
     // # 우리가 생성한 jwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 이전에
     // 등록

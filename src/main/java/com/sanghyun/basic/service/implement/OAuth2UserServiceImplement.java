@@ -4,12 +4,13 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Service;
 
 import com.sanghyun.basic.entity.CustomOAuthUser;
 
+@Service
 // OAuth2.0 인증 결과를 비즈니스 로직에 사용하는 서비스
 // DefaultOAuth2UserService를 확장하여 작성
-
 public class OAuth2UserServiceImplement extends DefaultOAuth2UserService {
   
 
