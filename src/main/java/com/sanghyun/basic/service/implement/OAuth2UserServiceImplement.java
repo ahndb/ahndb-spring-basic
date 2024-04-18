@@ -6,6 +6,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sanghyun.basic.entity.CustomOAuthUser;
 
 @Service
@@ -20,7 +21,14 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService {
 
     String oauthClientName = userRequest.getClientRegistration().getClientName();
     System.out.println(oauthClientName);
+
     OAuth2User oAuth2User = super.loadUser(userRequest);
+
+    try {
+      System.out.println(new ObjectMapper().writeValueAsString(oAuth2User));
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
 
     String name = (String) oAuth2User.getAttributes().get("login");
 
